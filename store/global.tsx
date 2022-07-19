@@ -17,6 +17,7 @@ const database = new Databases(client, Server.databaseID);
 
 export const appwrite = { account, database };
 
+
 export const userState = atom<User>({
     key: "user",
     default: null,

@@ -14,13 +14,13 @@ const Login: NextPage = () => {
   const router = useRouter();
 
   const login = async (e: FormEvent<EventTarget>) => {
-      e.preventDefault();
-      try {
-          setUser(await appwrite.account.createEmailSession(email, password) as unknown as User);
-          router.push("/home");
-      } catch (error) {
-          setAlert(error.message);
-      }
+    e.preventDefault();
+    try {
+        setUser(await appwrite.account.createEmailSession(email, password) as unknown as User);
+        router.push("/home");
+    } catch (error) {
+        setAlert(error.message);
+    }
   }
   return (
     <>
@@ -61,6 +61,7 @@ const Login: NextPage = () => {
                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                   </label>
                 </div>
+                <p className="py-4 text-error">{alert}</p>
                 <div className="form-control mt-6">
                   <button className="btn btn-primary" type="submit" disabled={!email || !password}>Login</button>
                 </div>

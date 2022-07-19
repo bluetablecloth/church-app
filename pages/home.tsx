@@ -12,13 +12,13 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-      appwrite.account.get().then((response: User) => {
-        setUser(response);
-        router.replace("/todos");
-      }, () => {
-        console.log('no session found')
-      })
-  }, []);
+        if (user) return;
+        const fetchData = async () => {
+            const response = await appwrite.account.get();
+            setUser(response as User);
+        }
+        fetchData()
+    }, [])
   return (
     <>
       <div className="navbar bg-base-100">
